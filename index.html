@@ -90,7 +90,7 @@
       const consoleDiv = document.getElementById("console");
       consoleDiv.innerHTML += `\n> ${userInput}`;
 
-      const response = await fetch("https://glitchwitch-backend-ok.onrender.com", {
+      const response = await fetch("https://glitchwitch-backend-ok.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userInput })
