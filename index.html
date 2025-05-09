@@ -74,15 +74,12 @@
   </div>
 
   <script>
-    const validCodes = ["PORTAL88", "CLAVE777", "IASTRAL42"];
+    let codigoActivo = "";
 
     function checkCode() {
       const input = document.getElementById("codeInput").value.trim().toUpperCase();
-      if (validCodes.includes(input)) {
-        document.getElementById("gpt-section").style.display = "flex";
-      } else {
-        alert("Código inválido. Intenta con una clave mágica.");
-      }
+      codigoActivo = input;
+      document.getElementById("gpt-section").style.display = "flex";
     }
 
     async function sendMessage() {
@@ -93,7 +90,11 @@
       const response = await fetch("https://glitchwitch-backend-ok.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userInput })
+        body: JSON.stringify({
+          message: userInput,
+          codigo: codigoActivo,
+          tipo: "normal"
+        })
       });
 
       const data = await response.json();
